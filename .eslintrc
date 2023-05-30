@@ -1,0 +1,78 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended",
+    "airbnb",
+    "prettier"
+  ],
+  "parser": "vue-eslint-parser",
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "root": true,
+  "ignorePatterns": [
+    "webpack.*.js",
+    "dist"
+  ],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "parser": "@typescript-eslint/parser",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "no-alert": "off",
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "class-methods-use-this": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "ts": "ignorePackages",
+        "tsx": "ignorePackages",
+        "vue": "ignorePackages"
+      }
+    ],
+    "@typescript-eslint/no-var-requires": "off",
+    "global-require": "off",
+    "vue/multi-word-component-names": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".ts",
+          ".tsx",
+          ".vue"
+        ],
+        "moduleDirectory": [
+          "node_modules"
+        ]
+      },
+      "alias": {
+        "map": [
+          ["@", "./src/"],
+          ["@components", "./src/app/components/"],
+          ["@use", "./src/use/"],
+          ["@ui", "./src/app/components/Ui/"]
+        ],
+        "extensions": [".ts",".tsx", ".js", ".vue"]
+      }
+    }
+  }
+}
