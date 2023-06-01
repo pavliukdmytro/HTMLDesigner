@@ -3,6 +3,19 @@ export default {
   blocks: [
     {
       id: 'section', // id is mandatory
+      category: 'Basic',
+      label:
+        '<div class="gjs-block gjs-one-bg gjs-four-color-h" title="1 Column" draggable="true">\n' +
+        '      <div class="gjs-block__media"><svg viewBox="0 0 24 24">\n' +
+        '        <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"></path>\n' +
+        '      </svg></div>\n' +
+        '      <div class="gjs-block-label">1 Column</div>\n' +
+        '    </div>', // You can use HTML/SVG inside labels
+      attributes: { class: 'gjs-block-section' },
+      content: `<div class="container" data-gjs-draggable=".container"></div>`,
+    },
+    {
+      id: 'section', // id is mandatory
       category: 'blocks',
       label: '<b>Section</b>', // You can use HTML/SVG inside labels
       attributes: { class: 'gjs-block-section' },
