@@ -2,23 +2,21 @@ export default {
   appendTo: '#blocks',
   blocks: [
     {
-      id: 'section', // id is mandatory
+      id: 'column_1', // id is mandatory
       category: 'Basic',
-      label:
-        '<div class="gjs-block gjs-one-bg gjs-four-color-h" title="1 Column" draggable="true">\n' +
-        '      <div class="gjs-block__media"><svg viewBox="0 0 24 24">\n' +
-        '        <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"></path>\n' +
-        '      </svg></div>\n' +
-        '      <div class="gjs-block-label">1 Column</div>\n' +
-        '    </div>', // You can use HTML/SVG inside labels
+      label: `<svg viewBox="0 0 24 24">\\n' +
+        '        <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"></path>\\n' +
+        '      </svg>
+        <div class="gjs-block-label">1 Column</div>
+`, // You can use HTML/SVG inside labels
       attributes: { class: 'gjs-block-section' },
-      content: `<div class="container" data-gjs-draggable=".container"></div>`,
+      content: `<div class="row"><div class="col-2">Dima</div><div class="col-2">Dima2</div></div>`,
     },
     {
       id: 'section', // id is mandatory
       category: 'blocks',
       label: '<b>Section</b>', // You can use HTML/SVG inside labels
-      attributes: { class: 'gjs-block-section' },
+      // attributes: { class: 'gjs-block-section' },
       content: `<section>
           <h1>This is a simple title</h1>
           <div>This is just a Lorem text: Lorem ipsum dolor sit amet</div>
@@ -39,6 +37,7 @@ export default {
       label: 'Text',
       category: 'text',
       content: '<div data-gjs-type="text">Insert your text here</div>',
+      draggable: true,
     },
     {
       id: 'image',

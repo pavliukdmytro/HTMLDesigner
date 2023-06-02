@@ -1,6 +1,6 @@
 import './vue-shim.d.ts';
 import './scss/main.scss';
-import './grapes/index';
+// import './grapes/index';
 
 import { IApp } from './libs/IApp';
 import App from './libs/App';

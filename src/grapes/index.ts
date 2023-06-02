@@ -11,6 +11,9 @@ import { redoButton, redoCommands } from '@/grapes/panels/redo';
 console.log(GrapesJS);
 
 const editor = grapesjs.init({
+  canvas: {
+    styles: ['./app.css'],
+  },
   // Indicate where to init the editor. You can also pass an HTMLElement
   container: '#gjs',
   // Get the content for the canvas directly from the element

@@ -26,6 +26,7 @@ module.exports = {
   entry: {
     /** точка входа **/
     app: './src/index.ts',
+    grapes: './src/grapes/index.ts',
   },
   output: {
     /** вывод **/
