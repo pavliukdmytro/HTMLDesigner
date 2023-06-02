@@ -8,11 +8,12 @@ import blockManager from '@/grapes/blocks/blockManager';
 import { undoButton, undoCommands } from '@/grapes/panels/undo';
 import { redoButton, redoCommands } from '@/grapes/panels/redo';
 
-console.log(GrapesJS);
+// console.log(GrapesJS);
+// import Test from './test';
 
 const editor = grapesjs.init({
   canvas: {
-    styles: ['./app.css'],
+    styles: ['./grapes.css', './app.css'],
   },
   // Indicate where to init the editor. You can also pass an HTMLElement
   container: '#gjs',
@@ -20,7 +21,7 @@ const editor = grapesjs.init({
   // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
   fromElement: true,
   // Size of the editor
-  height: '600px',
+  height: `${window.innerHeight - 42}px`,
   width: 'auto',
   // Disable the storage manager for the moment
   storageManager: false,
@@ -370,5 +371,7 @@ editor.Commands.add('show-blocks', {
     smEl.style.display = 'none';
   },
 });
+
+// Test(editor);
 
 export default editor;

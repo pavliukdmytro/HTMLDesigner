@@ -1,17 +1,11 @@
+import grid from '@/grapes/blocks/grid/grid';
+import buttons from '@/grapes/blocks/buttons/buttons';
+
 export default {
   appendTo: '#blocks',
   blocks: [
-    {
-      id: 'column_1', // id is mandatory
-      category: 'Basic',
-      label: `<svg viewBox="0 0 24 24">\\n' +
-        '        <path fill="currentColor" d="M2 20h20V4H2v16Zm-1 0V4a1 1 0 0 1 1-1h20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"></path>\\n' +
-        '      </svg>
-        <div class="gjs-block-label">1 Column</div>
-`, // You can use HTML/SVG inside labels
-      attributes: { class: 'gjs-block-section' },
-      content: `<div class="row"><div class="col-2">Dima</div><div class="col-2">Dima2</div></div>`,
-    },
+    ...grid,
+    ...buttons,
     {
       id: 'section', // id is mandatory
       category: 'blocks',
@@ -37,7 +31,7 @@ export default {
       label: 'Text',
       category: 'text',
       content: '<div data-gjs-type="text">Insert your text here</div>',
-      draggable: true,
+      draggable: false,
     },
     {
       id: 'image',
