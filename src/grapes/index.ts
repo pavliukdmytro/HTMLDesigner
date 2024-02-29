@@ -269,7 +269,7 @@ const editor = grapesjs.init({
       {
         name: 'Extra',
         open: false,
-        buildProps: ['background-color', 'box-shadow', 'custom-prop'],
+        buildProps: ['background-color', 'box-shadow', 'custom-prop', 'color'],
         properties: [
           {
             id: 'custom-prop',
@@ -306,6 +306,9 @@ const editor = grapesjs.init({
       //   },
       // },
     ],
+  },
+  traitManager: {
+    appendTo: '.styles-container',
   },
 });
 

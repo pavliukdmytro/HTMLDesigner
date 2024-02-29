@@ -9,7 +9,7 @@ export default [
     label: `<div>Button primary</div>`,
     type: 'link',
     content: `
-        <a class="g-button-primary" data-gjs-type="link" data-gjs-droppable="true">Button primary</a>
+        <a class="g-button-primary" data-gjs-type="link" data-gjs-droppable="true" href="">Button primary</a>
     `,
     style: {},
   },
@@ -19,7 +19,7 @@ export default [
     label: `<div>Button secondary</div>`,
     type: 'link',
     content: `
-        <a class="g-button-secondary" data-gjs-type="link" data-gjs-droppable="true">Button secondary</a>
+        <a class="g-button-secondary" data-gjs-type="link" data-gjs-droppable="true" href="">Button secondary</a>
     `,
     style: {},
   },
