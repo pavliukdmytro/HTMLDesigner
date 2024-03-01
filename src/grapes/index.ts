@@ -2,16 +2,19 @@ import 'grapesjs/dist/css/grapes.min.css';
 import './grapes.scss';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import grapesjs, { GrapesJS, Row } from 'grapesjs';
+import grapesjs, { EditorConfig } from 'grapesjs';
 import blockManager from '@/grapes/blocks/blockManager';
+import type { Editor } from 'grapesjs/dist/index';
 
 import { undoButton, undoCommands } from '@/grapes/panels/undo';
 import { redoButton, redoCommands } from '@/grapes/panels/redo';
 
+import commands from '@/grapes/commands/commands';
+
 // console.log(GrapesJS);
 // import Test from './test';
 
-const editor = grapesjs.init({
+const editorConfig: EditorConfig = {
   canvas: {
     styles: ['./grapes.css', './app.css'],
   },
@@ -310,71 +313,11 @@ const editor = grapesjs.init({
   traitManager: {
     appendTo: '.styles-container',
   },
-});
+  test: '12',
+};
 
-// Commands
-editor.Commands.add('set-device-desktop', {
-  run: (editor2) => editor2.setDevice('Desktop'),
-});
-editor.Commands.add('set-device-tablet', {
-  run: (editor2) => editor2.setDevice('Tablet'),
-});
-editor.Commands.add('set-device-mobile', {
-  run: (editor2) => editor2.setDevice('Mobile'),
-});
+const editor: Editor = grapesjs.init(editorConfig);
 
-editor.Commands.add('show-layers', {
-  getRowEl(editor2: GrapesJS) {
-    return editor2.getContainer().closest('.editor-row');
-  },
-  getLayersEl(row: Row) {
-    return row.querySelector('.layers-container');
-  },
-
-  run(editor2) {
-    const lmEl = this.getLayersEl(this.getRowEl(editor2));
-    lmEl.style.display = '';
-  },
-  stop(editor2) {
-    const lmEl = this.getLayersEl(this.getRowEl(editor2));
-    lmEl.style.display = 'none';
-  },
-});
-editor.Commands.add('show-styles', {
-  getRowEl(editor2: GrapesJS) {
-    return editor2.getContainer().closest('.editor-row');
-  },
-  getStyleEl(row: Row) {
-    return row.querySelector('.styles-container');
-  },
-
-  run(editor2) {
-    const smEl = this.getStyleEl(this.getRowEl(editor2));
-    smEl.style.display = '';
-  },
-  stop(editor2) {
-    const smEl = this.getStyleEl(this.getRowEl(editor2));
-    smEl.style.display = 'none';
-  },
-});
-editor.Commands.add('show-blocks', {
-  getRowEl(editor2: GrapesJS) {
-    return editor2.getContainer().closest('.editor-row');
-  },
-  getStyleEl(row: Row) {
-    return row.querySelector('#blocks');
-  },
-
-  run(editor2) {
-    const smEl = this.getStyleEl(this.getRowEl(editor2));
-    smEl.style.display = '';
-  },
-  stop(editor2) {
-    const smEl = this.getStyleEl(this.getRowEl(editor2));
-    smEl.style.display = 'none';
-  },
-});
-
-// Test(editor);
+commands(editor);
 
 export default editor;

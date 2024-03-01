@@ -19,7 +19,7 @@ export const undoCommands = [
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     run: function (editor: Editor, sender) {
-      console.log(editor, sender);
+      // console.log(editor, sender);
       sender.set('active', false);
       editor.UndoManager.undo(true);
     },

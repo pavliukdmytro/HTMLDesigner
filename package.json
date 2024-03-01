@@ -47,6 +47,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "fork-ts-checker-webpack-plugin": "^7.2.14",
     "grapesjs": "^0.21.1",
+    "grapesjs-typed": "^2.0.1",
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.0",
