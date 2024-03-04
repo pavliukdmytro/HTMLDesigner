@@ -1,9 +1,13 @@
 import grid from '@/grapes/blocks/grid/grid';
 import buttons from '@/grapes/blocks/buttons/buttons';
+import basic from '@/grapes/blocks/basic/basic';
+import text from '@/grapes/blocks/text/text';
 
 export default {
   appendTo: '#blocks',
   blocks: [
+    ...basic,
+    ...text,
     ...grid,
     ...buttons,
     {

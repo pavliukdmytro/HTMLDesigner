@@ -1,0 +1,11 @@
+.g-link{
+  text-decoration-line: underline;
+  text-underline-position: under;
+  transition: 0.2s linear color;
+  cursor: pointer;
+  text-underline-color: currentColor;
+  color: var(--color-link);
+  &:hover {
+    color: var(--color-dark-grey);
+  }
+}
