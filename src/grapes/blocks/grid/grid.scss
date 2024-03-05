@@ -1,14 +1,2 @@
-$padding: 20px auto;
-@mixin blockStyle {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    min-height: 30px;
-}
-
-.gjs-dashed{
-    .container,
-    [class^="col-"]{
-        @include blockStyle;
-    }
-}
+//$padding: 20px auto;
 

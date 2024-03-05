@@ -1,16 +1,16 @@
-import './vue-shim.d.ts';
-import './scss/main.scss';
+import '@/index.d';
+import '@/scss/main.scss';
 // import './grapes/index';
 
-import { IApp } from './libs/IApp';
-import App from './libs/App';
-import './root-components';
+// import { IApp } from './libs/IApp';
+// import App from './libs/App';
+// import './root-components';
 
-declare global {
-  interface Window {
-    App: IApp;
-  }
-}
+// declare global {
+//   interface Window {
+//     App: IApp;
+//   }
+// }
 
-window.App = App;
-App.vue.main();
+// window.App = App;
+// App.vue.main();

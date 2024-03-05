@@ -54,3 +54,22 @@
 .panel__switcher {
     position: initial;
 }
+
+
+@mixin blockStyle {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 30px;
+}
+
+
+.gjs-dashed *[data-gjs-highlightable]{
+    @include blockStyle;
+}
+
+//.gjs-dashed{
+//    .container,
+//    [class^="col-"]{
+//        @include blockStyle;
+//    }
+//}

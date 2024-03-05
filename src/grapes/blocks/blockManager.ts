@@ -2,8 +2,9 @@ import grid from '@/grapes/blocks/grid/grid';
 import buttons from '@/grapes/blocks/buttons/buttons';
 import basic from '@/grapes/blocks/basic/basic';
 import text from '@/grapes/blocks/text/text';
+import type { BlockManagerConfig } from 'grapesjs';
 
-export default {
+const blockManager: BlockManagerConfig = {
   appendTo: '#blocks',
   blocks: [
     ...basic,
@@ -35,7 +36,6 @@ export default {
       label: 'Text',
       category: 'text',
       content: '<div data-gjs-type="text">Insert your text here</div>',
-      draggable: false,
     },
     {
       id: 'image',
@@ -49,5 +49,13 @@ export default {
       // reacts by opening the AssetManager
       activate: true,
     },
+    {
+      id: 'my-input-type',
+      label: 'my-input-type',
+      category: 'text',
+      content: '<input data-gjs-type="my-input-type">',
+    },
   ],
 };
+
+export default blockManager;

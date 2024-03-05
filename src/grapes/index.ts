@@ -1,7 +1,6 @@
 import 'grapesjs/dist/css/grapes.min.css';
 import './grapes.scss';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+
 import grapesjs, { EditorConfig } from 'grapesjs';
 import blockManager from '@/grapes/blocks/blockManager';
 import type { Editor } from 'grapesjs/dist/index';
@@ -10,9 +9,6 @@ import { undoButton, undoCommands } from '@/grapes/panels/undo';
 import { redoButton, redoCommands } from '@/grapes/panels/redo';
 
 import commands from '@/grapes/commands/commands';
-
-// console.log(GrapesJS);
-// import Test from './test';
 
 const editorConfig: EditorConfig = {
   canvas: {

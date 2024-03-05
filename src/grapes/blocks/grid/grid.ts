@@ -1,8 +1,9 @@
 import './grid.scss';
+import type { BlockProperties } from 'grapesjs';
 
 const category = 'grid';
 
-export default [
+const gridBlocks: Array<BlockProperties> = [
   {
     id: 'container', // id is mandatory
     category,
@@ -13,7 +14,6 @@ export default [
     content: `
         <section class="container" data-gjs-droppable="true"></section>
     `,
-    style: {},
   },
 
   {
@@ -28,3 +28,5 @@ export default [
     content: `<div class="row"><div class="col-md-6" data-gjs-droppable="true"></div><div class="col-md-6" data-gjs-droppable="true"></div></div>`,
   },
 ];
+
+export default gridBlocks;
