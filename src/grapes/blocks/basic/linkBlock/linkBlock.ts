@@ -1,5 +1,6 @@
 import './linkBlock.scss';
 import { BlockProperties } from 'grapesjs';
+import type { Editor } from 'grapesjs/dist/index';
 
 const linkBlock: BlockProperties = {
   id: 'linkBlock', // id is mandatory
@@ -10,9 +11,50 @@ const linkBlock: BlockProperties = {
       </svg></div>
       <div class="gjs-block-label">Link block</div>
     `,
-  content: `
-        <a class="g-link-block" data-gjs-droppable="true" href=""></a>
-    `,
+  select: true,
+  content: {
+    type: 'link-block',
+    draggable: true,
+    editable: true,
+    // content: `
+    //     <a class="g-link-block" href=""></a>
+    // `,
+  },
+};
+
+export const linkBlockComponentType = (editor: Editor) => {
+  editor.DomComponents.addType('link-block', {
+    // extend: 'link',
+
+    model: {
+      defaults: {
+        tagName: 'a',
+        editable: true,
+        // draggable: 'form, form *', // Can be dropped only inside `form` elements
+        // droppable: false, // Can't drop other elements inside
+        components: '',
+        // style: { 'min-height': '10px', 'min-width': '10px' },
+        // styles: `.g-link-block { color: red }`,
+        // styles: `.g-link-block { color: red }`,
+        // styles: styles.default.toString(),
+        attributes: {
+          // Default attributes
+          class: 'g-link-block',
+          // name: 'default-name',
+          // placeholder: 'Insert text here',
+        },
+        traits: ['href', 'title'],
+        // styles: `
+        //     .g-link-block: { background-color: brown; }
+        // `,
+      },
+    },
+    view: {
+      // contents: 'Hello world!!!',
+      editable: true,
+      // style: { width: '100px', height: '100px', 'background-color': 'red' },
+    },
+  });
 };
 
 export default linkBlock;

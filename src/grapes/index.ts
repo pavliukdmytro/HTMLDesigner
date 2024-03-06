@@ -10,6 +10,8 @@ import { redoButton, redoCommands } from '@/grapes/panels/redo';
 
 import commands from '@/grapes/commands/commands';
 
+import { linkBlockComponentType } from '@/grapes/blocks/basic/linkBlock/linkBlock';
+
 const editorConfig: EditorConfig = {
   canvas: {
     styles: ['./grapes.css', './app.css'],
@@ -240,6 +242,7 @@ const editorConfig: EditorConfig = {
   },
   selectorManager: {
     appendTo: '.styles-container',
+    // componentFirst: true,
   },
   styleManager: {
     appendTo: '.styles-container',
@@ -309,7 +312,7 @@ const editorConfig: EditorConfig = {
   traitManager: {
     appendTo: '.styles-container',
   },
-  test: '12',
+  plugins: [linkBlockComponentType],
 };
 
 const editor: Editor = grapesjs.init(editorConfig);
