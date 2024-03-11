@@ -1,18 +1,19 @@
 import type { Editor } from 'grapesjs/dist/index';
 
 export default (editor: Editor) => {
+  const { Commands } = editor;
   // Commands
-  editor.Commands.add('set-device-desktop', {
+  Commands.add('set-device-desktop', {
     run: (editor2: Editor) => editor2.setDevice('Desktop'),
   });
-  editor.Commands.add('set-device-tablet', {
+  Commands.add('set-device-tablet', {
     run: (editor2: Editor) => editor2.setDevice('Tablet'),
   });
-  editor.Commands.add('set-device-mobile', {
+  Commands.add('set-device-mobile', {
     run: (editor2: Editor) => editor2.setDevice('Mobile'),
   });
 
-  editor.Commands.add('show-layers', {
+  Commands.add('show-layers', {
     getRowEl(editor2: Editor) {
       return editor2?.getContainer()?.closest('.editor-row');
     },
@@ -33,7 +34,7 @@ export default (editor: Editor) => {
       }
     },
   });
-  editor.Commands.add('show-styles', {
+  Commands.add('show-styles', {
     getRowEl(editor2: Editor) {
       return editor2?.getContainer()?.closest('.editor-row');
     },
@@ -54,7 +55,7 @@ export default (editor: Editor) => {
       }
     },
   });
-  editor.Commands.add('show-blocks', {
+  Commands.add('show-blocks', {
     getRowEl(editor2: Editor) {
       return editor2?.getContainer()?.closest('.editor-row');
     },
@@ -73,6 +74,22 @@ export default (editor: Editor) => {
       if (smEl) {
         smEl.style.display = 'none';
       }
+    },
+  });
+
+  Commands.add('show-traits', {
+    getTraitsEl(editor2: Editor) {
+      // @ts-ignore
+      const row: HTMLDivElement = editor2?.getContainer()?.closest('.editor-row');
+      return row?.querySelector('.traits-container');
+    },
+    run(editor2: Editor) {
+      // @ts-ignore
+      this.getTraitsEl(editor2).style.display = '';
+    },
+    stop(editor2: Editor) {
+      // @ts-ignore
+      this.getTraitsEl(editor2).style.display = 'none';
     },
   });
 };

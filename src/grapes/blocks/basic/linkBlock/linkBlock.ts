@@ -1,6 +1,9 @@
-import './linkBlock.scss';
 import { BlockProperties } from 'grapesjs';
 import type { Editor } from 'grapesjs/dist/index';
+
+// @ts-ignore
+// import * as styles from './linkBlock.scss';
+import './linkBlock.scss';
 
 const linkBlock: BlockProperties = {
   id: 'linkBlock', // id is mandatory
@@ -24,12 +27,11 @@ const linkBlock: BlockProperties = {
 
 export const linkBlockComponentType = (editor: Editor) => {
   editor.DomComponents.addType('link-block', {
-    // extend: 'link',
-
     model: {
       defaults: {
         tagName: 'a',
         editable: true,
+        inlineComponent: true,
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
         components: '',
@@ -47,6 +49,15 @@ export const linkBlockComponentType = (editor: Editor) => {
         // styles: `
         //     .g-link-block: { background-color: brown; }
         // `,
+        droppable: (el: BlockProperties): boolean => {
+          const type = el?.attributes?.type;
+          if (type === 'link-block' || type === 'link' || !el?.attributes?.inlineComponent) {
+            return false;
+          }
+          console.log(el);
+          // console.log(this);
+          return true;
+        },
       },
     },
     view: {
