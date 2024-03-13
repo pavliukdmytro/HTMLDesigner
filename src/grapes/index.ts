@@ -11,6 +11,8 @@ import { redoButton, redoCommands } from '@/grapes/panels/redo';
 import { linkBlockComponentType } from '@/grapes/blocks/basic/linkBlock/linkBlock';
 import commands from '@/grapes/commands';
 
+import components from '@/grapes/components/index';
+
 const editorConfig: EditorConfig = {
   canvas: {
     styles: ['./grapes.css', './app.css'],
@@ -41,12 +43,12 @@ const editorConfig: EditorConfig = {
       {
         name: 'Tablet',
         width: '768px', // this value will be used on canvas width
-        widthMedia: '768px', // this value will be used in CSS @media
+        widthMedia: '991px', // this value will be used in CSS @media
       },
       {
         name: 'Mobile',
         width: '375px', // this value will be used on canvas width
-        widthMedia: '375px', // this value will be used in CSS @media
+        widthMedia: '767px', // this value will be used in CSS @media
       },
     ],
   },
@@ -252,7 +254,7 @@ const editorConfig: EditorConfig = {
   },
   selectorManager: {
     appendTo: '.styles-container',
-    // componentFirst: true,
+    componentFirst: true,
   },
   styleManager: {
     appendTo: '.styles-container',
@@ -323,7 +325,7 @@ const editorConfig: EditorConfig = {
     // appendTo: '.styles-container',
     appendTo: '.traits-container',
   },
-  plugins: [linkBlockComponentType],
+  plugins: [linkBlockComponentType, ...components],
 };
 
 const editor: Editor = grapesjs.init(editorConfig);
