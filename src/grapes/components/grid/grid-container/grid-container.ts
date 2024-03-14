@@ -1,8 +1,6 @@
-import type { Editor } from 'grapesjs';
+import type { Editor, ComponentProperties } from 'grapesjs';
 
-// const categoryMobile = { id: 'first', label: 'Mobile' };
-// const categoryTablet = { id: 'second', label: 'Tablet' };
-// const categoryDesktop = { id: 'third', label: 'Desktop' };
+import styles from './grid-container.m.scss';
 
 const gridContainerComponent = (editor: Editor) => {
   editor.DomComponents.addType('grid-container', {
@@ -16,14 +14,7 @@ const gridContainerComponent = (editor: Editor) => {
         attributes: { class: 'grid-container' },
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
-        styles: `.grid-container {display: grid;}`,
-        // style: {
-        // display: 'grid',
-        //   width: '100px',
-        //   height: '100px',
-        //   background: 'red',
-        // },
-
+        styles,
         traits: [
           {
             type: 'select',
@@ -97,18 +88,15 @@ const gridContainerComponent = (editor: Editor) => {
         // @ts-ignore
         this.on('change:alignItems', this.handlerChangeProps);
       },
-      handlerChangeProps(e: Editor) {
-        // @ts-ignore
-        const { column, rowGap, columnGap, alignItems } = e.props();
-        // @ts-ignore
-        console.log(e, e.props());
-        const styles = `
+      handlerChangeProps(component: ComponentProperties) {
+        const { column, rowGap, columnGap, alignItems } = component.props();
+        const newStyles = `
             grid-template-columns: repeat(${column ?? 1}, minmax(0, 1fr));
             grid-row-gap: ${rowGap ?? 0}px;
             grid-column-gap: ${columnGap ?? 0}px;
             align-items: ${alignItems ?? 'initial'};
         `;
-        e.setStyle(styles);
+        component.setStyle(newStyles);
       },
     },
   });

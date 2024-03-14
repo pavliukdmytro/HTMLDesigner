@@ -1,4 +1,3 @@
-import './grid.scss';
 import type { BlockProperties } from 'grapesjs';
 import gridContainerBlock from '@/grapes/blocks/grid/grid-container/grid-container';
 import gridItemBlock from '@/grapes/blocks/grid/grid-item/grid-item';

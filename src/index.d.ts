@@ -16,3 +16,9 @@ declare module '*.vue' {
 interface Element {
   style: CSSStyleDeclaration;
 }
+
+declare module '*.m.scss' {
+  export default {
+    // [index: string]: string;
+  };
+}

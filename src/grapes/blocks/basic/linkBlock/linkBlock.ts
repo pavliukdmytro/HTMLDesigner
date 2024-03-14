@@ -1,9 +1,7 @@
 import { BlockProperties } from 'grapesjs';
 import type { Editor } from 'grapesjs/dist/index';
 
-// @ts-ignore
-// import * as styles from './linkBlock.scss';
-import './linkBlock.scss';
+import styles from './linkBlock.m.scss';
 
 const linkBlock: BlockProperties = {
   id: 'linkBlock', // id is mandatory
@@ -19,6 +17,7 @@ const linkBlock: BlockProperties = {
     type: 'link-block',
     draggable: true,
     editable: true,
+    styles,
     // content: `
     //     <a class="g-link-block" href=""></a>
     // `,

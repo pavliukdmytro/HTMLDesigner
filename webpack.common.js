@@ -37,7 +37,7 @@ module.exports = {
     rules: [
       /** обработка scss и css файлов **/
       {
-        test: /\.s?css$/i,
+        test: /[^m]\.s?css$/i,
         use: [
           MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
@@ -45,6 +45,28 @@ module.exports = {
             loader: 'css-loader',
             options: {
               url: false,
+            },
+          },
+          // Compiles Sass to CSS
+          { loader: 'sass-loader' },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: './src/scss/core/wanted.scss',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.m\.scss$/i,
+        use: [
+          // Translates CSS into CommonJS
+          {
+            loader: 'css-loader',
+            options: {
+              url: false,
+              exportType: "string",
+              esModule: true,
             },
           },
           // Compiles Sass to CSS
