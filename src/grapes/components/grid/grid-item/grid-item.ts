@@ -1,11 +1,9 @@
-import type { Editor } from 'grapesjs';
+import type { ComponentProperties, Editor } from 'grapesjs';
 
-// const categoryMobile = { id: 'first', label: 'Mobile' };
-// const categoryTablet = { id: 'second', label: 'Tablet' };
-// const categoryDesktop = { id: 'third', label: 'Desktop' };
+const containerComponentType = 'grid-item';
 
 const gridItemComponent = (editor: Editor) => {
-  editor.DomComponents.addType('grid-item', {
+  editor.DomComponents.addType(containerComponentType, {
     // Make the editor understand when to bind `my-input-type`
     // isComponent: (el) => el.tagName === 'INPUT',
     // Model definition
@@ -75,54 +73,70 @@ const gridItemComponent = (editor: Editor) => {
               { value: 12, name: 'col 12' },
             ],
           },
-          // {
-          //   type: 'number',
-          //   name: 'rowGap',
-          //   label: 'row gap',
-          //   placeholder: '0px',
-          //   changeProp: true,
-          //   // default: 0,
-          //   value: 0,
-          //   // min: 0, // Minimum number value
-          //   // max: 100, // Maximum number value
-          //   step: 1, // Number of steps
-          // },
-          // {
-          //   type: 'number',
-          //   name: 'columnGap',
-          //   label: 'column gap',
-          //   placeholder: '0px',
-          //   changeProp: true,
-          //   default: 0,
-          //   // min: 0, // Minimum number value
-          //   // max: 100, // Maximum number value
-          //   step: 1, // Number of steps
-          // },
         ],
       },
       init() {
         // Also the listener changes from `change:attributes:*` to `change:*`
         // @ts-ignore
-        this.on('change:alignSelf', this.handlerChangeProps);
+        this.on('change:alignSelf', this.handlerChangeAlignSelf);
         // @ts-ignore
-        this.on('change:justifySelf', this.handlerChangeProps);
+        this.on('change:justifySelf', this.handlerChangeJustifySelf);
         // @ts-ignore
-        this.on('change:columnSize', this.handlerChangeProps);
+        this.on('change:columnSize', this.handlerChangeGridColumn);
       },
-      handlerChangeProps(e: Editor) {
+      changeStyle(styleObj: { [name: string]: string }) {
         // @ts-ignore
-        const { alignSelf, justifySelf, columnSize } = e.props();
-        // @ts-ignore
-        // console.log(e, e.props());
-        const styles = `
-            align-self: ${alignSelf ?? 'initial'};
-            justify-self: ${justifySelf ?? 'stretch'};
-            grid-column: span ${columnSize ?? 1};
-        `;
-        e.setStyle(styles);
+        editor.StyleManager.addStyleTargets(styleObj);
+      },
+      handlerChangeAlignSelf(component: ComponentProperties, value: string) {
+        this.changeStyle({
+          'align-self': value,
+        });
+      },
+      handlerChangeJustifySelf(component: ComponentProperties, value: string) {
+        this.changeStyle({
+          'justify-self': value,
+        });
+      },
+      handlerChangeGridColumn(component: ComponentProperties, value: string) {
+        this.changeStyle({
+          'grid-column': `span ${value}`,
+        });
       },
     },
   });
+
+  const getStyle = (style: string) => editor.StyleManager.getSelected()?.attributes?.style?.[style];
+  // @ts-ignore
+  const getTraitElement = (name: string) => editor.getSelected().get('traits').where({ name })[0];
+  const getNumberFromString = (str: string): number => +(str?.match(/[0-9]/g)?.join('') || 0);
+
+  const setProps = () => {
+    if (editor.getSelected()?.getName()?.toLowerCase() === containerComponentType) {
+      setTimeout(() => {
+        if (getStyle('align-self')) {
+          getTraitElement('alignSelf').setValue(getStyle('align-self'));
+        } else {
+          getTraitElement('alignSelf').setValue('initial');
+        }
+        if (getStyle('justify-self')) {
+          // console.log(getStyle('justify-self'));
+          getTraitElement('justifySelf').setValue(getStyle('justify-self'));
+        } else {
+          getTraitElement('justifySelf').setValue('stretch');
+        }
+
+        if (getStyle('grid-column')) {
+          getTraitElement('columnSize').setValue(`${getNumberFromString(getStyle('grid-column'))}`);
+        } else {
+          getTraitElement('columnSize').setValue(1);
+        }
+      }, 4);
+    }
+  };
+
+  editor.on('change:device', setProps);
+  editor.on('component:selected', setProps);
 };
 
 export default gridItemComponent;

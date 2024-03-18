@@ -17,15 +17,14 @@ const gridContainerComponent = (editor: Editor) => {
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
         styles,
-        traits(component: ComponentProperties) {
+        traits() {
           return [
             {
               type: 'select',
               name: 'column',
               label: 'column',
               changeProp: true,
-              default: +(component.getStyle('grid-template-columns')?.match(/[0-9]/)[0] ?? 1),
-              // value: +(component.getStyle('grid-template-columns')?.match(/[0-9]/)[0] ?? 1),
+              default: 1,
               options: [
                 { value: 1, name: 'col 1' },
                 { value: 2, name: 'col 2' },
@@ -47,8 +46,8 @@ const gridContainerComponent = (editor: Editor) => {
               label: 'row gap',
               placeholder: '0px',
               changeProp: true,
-              // default: '100',
-              // value: '300',
+              // default: 100,
+              // value: 200,
               min: 0, // Minimum number value
               // units: ['px'],
               // max: 100, // Maximum number value
@@ -105,9 +104,8 @@ const gridContainerComponent = (editor: Editor) => {
         });
       },
       handlerChangeRowGap(component: ComponentProperties, value: string) {
-        console.log(value);
         this.changeStyle({
-          'grid-row-gap': `${value}`,
+          'grid-row-gap': `${value}px`,
         });
       },
       handlerChangeColumnGap(component: ComponentProperties, value: string) {
@@ -131,12 +129,13 @@ const gridContainerComponent = (editor: Editor) => {
   const setProps = () => {
     if (editor.getSelected()?.getName()?.toLowerCase() === containerComponentType) {
       setTimeout(() => {
+        // console.log(1222);
         if (getStyle('grid-template-columns')) {
-          getTraitElement('column').setValue(+getStyle('grid-template-columns').match(/[0-9]/)[0]);
+          // console.log(+getStyle('grid-template-columns').match(/[0-9]/)[0], ' AAA');
+          getTraitElement('column').setValue(getStyle('grid-template-columns').match(/[0-9]/)[0]);
         } else {
           getTraitElement('column').setValue(1);
         }
-
         if (getStyle('grid-row-gap')) {
           getTraitElement('rowGap').setValue(getNumberFromString(getStyle('grid-row-gap')));
         } else {
@@ -148,11 +147,19 @@ const gridContainerComponent = (editor: Editor) => {
         } else {
           getTraitElement('columnGap').setValue(0);
         }
+
+        if (getStyle('align-items')) {
+          getTraitElement('alignItems').setValue(getStyle('align-items'));
+          // console.log(getStyle('align-items'));
+        } else {
+          getTraitElement('alignItems').setValue('initial');
+        }
       }, 4);
     }
   };
 
   editor.on('change:device', setProps);
+  editor.on('component:selected', setProps);
 };
 
 export default gridContainerComponent;
