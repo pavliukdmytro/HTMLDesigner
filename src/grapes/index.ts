@@ -12,6 +12,7 @@ import { linkBlockComponentType } from '@/grapes/blocks/basic/linkBlock/linkBloc
 import commands from '@/grapes/commands';
 
 import components from '@/grapes/components/index';
+import traits from '@/grapes/traits/index';
 
 const editorConfig: EditorConfig = {
   canvas: {
@@ -346,5 +347,7 @@ const editorConfig: EditorConfig = {
 const editor: Editor = grapesjs.init(editorConfig);
 
 commands(editor);
+
+traits(editor);
 
 export default editor;
