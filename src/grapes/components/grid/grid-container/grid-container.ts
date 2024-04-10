@@ -1,4 +1,4 @@
-import type { Editor, ComponentProperties } from 'grapesjs';
+import type { Editor } from 'grapesjs';
 
 import styles from './grid-container.m.scss';
 
@@ -20,59 +20,58 @@ const gridContainerComponent = (editor: Editor) => {
         traits() {
           return [
             {
-              type: 'select',
-              name: 'column',
+              type: 'style-select',
+              name: 'grid-template-columns',
               label: 'column',
               changeProp: true,
-              default: 1,
+              default: 'repeat(1, minmax(0, 1fr))',
               options: [
-                { value: 1, name: 'col 1' },
-                { value: 2, name: 'col 2' },
-                { value: 3, name: 'col 3' },
-                { value: 4, name: 'col 4' },
-                { value: 5, name: 'col 5' },
-                { value: 6, name: 'col 6' },
-                { value: 7, name: 'col 7' },
-                { value: 8, name: 'col 8' },
-                { value: 9, name: 'col 9' },
-                { value: 10, name: 'col 10' },
-                { value: 11, name: 'col 11' },
-                { value: 12, name: 'col 12' },
+                { value: 'repeat(1, minmax(0, 1fr))', name: 'col 1' },
+                { value: 'repeat(2, minmax(0, 1fr))', name: 'col 2' },
+                { value: 'repeat(3, minmax(0, 1fr))', name: 'col 3' },
+                { value: 'repeat(4, minmax(0, 1fr))', name: 'col 4' },
+                { value: 'repeat(5, minmax(0, 1fr))', name: 'col 5' },
+                { value: 'repeat(6, minmax(0, 1fr))', name: 'col 6' },
+                { value: 'repeat(7, minmax(0, 1fr))', name: 'col 7' },
+                { value: 'repeat(8, minmax(0, 1fr))', name: 'col 8' },
+                { value: 'repeat(9, minmax(0, 1fr))', name: 'col 9' },
+                { value: 'repeat(10, minmax(0, 1fr))', name: 'col 10' },
+                { value: 'repeat(11, minmax(0, 1fr))', name: 'col 11' },
+                { value: 'repeat(12, minmax(0, 1fr))', name: 'col 12' },
               ],
             },
             {
-              type: 'number',
-              name: 'rowGap',
+              type: 'style-input',
+              name: 'grid-row-gap',
               label: 'row gap',
               placeholder: '0px',
               changeProp: true,
-              // default: 100,
+              default: 0,
               // value: 200,
-              min: 0, // Minimum number value
+              // min: 0, // Minimum number value
               // units: ['px'],
               // max: 100, // Maximum number value
-              step: 1, // Number of steps
+              // step: 1, // Number of steps
             },
             {
-              type: 'number',
-              name: 'columnGap',
+              type: 'style-input',
+              name: 'grid-column-gap',
               label: 'column gap',
               placeholder: '0px',
               changeProp: true,
               default: 0,
-              value: 15,
+              // value: 15,
               // units: ['px'],
-              min: 0, // Minimum number value
+              // min: 0, // Minimum number value
               // max: 100, // Maximum number value
-              step: 1, // Number of steps
+              // step: 1, // Number of steps
             },
             {
-              type: 'select',
-              name: 'alignItems',
+              type: 'style-select',
+              name: 'align-items',
               label: 'vertical align',
               changeProp: true,
               default: 'initial',
-              // category: categoryMobile,
               options: [
                 { value: 'initial', name: 'initial' },
                 { value: 'flex-start', name: 'start' },
@@ -83,83 +82,8 @@ const gridContainerComponent = (editor: Editor) => {
           ];
         },
       },
-      init() {
-        // Also the listener changes from `change:attributes:*` to `change:*`
-        // @ts-ignore
-        this.on('change:column', this.handlerChangeColumn);
-        // @ts-ignore
-        this.on('change:rowGap', this.handlerChangeRowGap);
-        // @ts-ignore
-        this.on('change:columnGap', this.handlerChangeColumnGap);
-        // @ts-ignore
-        this.on('change:alignItems', this.handlerChangeAlignItems);
-      },
-      changeStyle(styleObj: { [name: string]: string }) {
-        // @ts-ignore
-        editor.StyleManager.addStyleTargets(styleObj);
-      },
-      handlerChangeColumn(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'grid-template-columns': `repeat(${value}, minmax(0, 1fr))`,
-        });
-      },
-      handlerChangeRowGap(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'grid-row-gap': `${value}px`,
-        });
-      },
-      handlerChangeColumnGap(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'grid-column-gap': `${value}px`,
-        });
-      },
-      handlerChangeAlignItems(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'align-items': `${value}`,
-        });
-      },
     },
   });
-
-  const getStyle = (style: string) => editor.StyleManager.getSelected()?.attributes?.style?.[style];
-  // @ts-ignore
-  const getTraitElement = (name: string) => editor.getSelected().get('traits').where({ name })[0];
-  const getNumberFromString = (str: string): number => +(str?.match(/[0-9]/g)?.join('') || 0);
-
-  const setProps = () => {
-    if (editor.getSelected()?.getName()?.toLowerCase() === containerComponentType) {
-      setTimeout(() => {
-        // console.log(1222);
-        if (getStyle('grid-template-columns')) {
-          // console.log(+getStyle('grid-template-columns').match(/[0-9]/)[0], ' AAA');
-          getTraitElement('column').setValue(getStyle('grid-template-columns').match(/[0-9]/)[0]);
-        } else {
-          getTraitElement('column').setValue(1);
-        }
-        if (getStyle('grid-row-gap')) {
-          getTraitElement('rowGap').setValue(getNumberFromString(getStyle('grid-row-gap')));
-        } else {
-          getTraitElement('rowGap').setValue(0);
-        }
-
-        if (getStyle('grid-column-gap')) {
-          getTraitElement('columnGap').setValue(getNumberFromString(getStyle('grid-column-gap')));
-        } else {
-          getTraitElement('columnGap').setValue(0);
-        }
-
-        if (getStyle('align-items')) {
-          getTraitElement('alignItems').setValue(getStyle('align-items'));
-          // console.log(getStyle('align-items'));
-        } else {
-          getTraitElement('alignItems').setValue('initial');
-        }
-      }, 4);
-    }
-  };
-
-  editor.on('change:device', setProps);
-  editor.on('component:selected', setProps);
 };
 
 export default gridContainerComponent;
