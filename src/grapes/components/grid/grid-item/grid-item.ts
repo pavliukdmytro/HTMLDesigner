@@ -1,4 +1,4 @@
-import type { ComponentProperties, Editor } from 'grapesjs';
+import type { Editor } from 'grapesjs';
 
 const containerComponentType = 'grid-item';
 
@@ -24,8 +24,8 @@ const gridItemComponent = (editor: Editor) => {
 
         traits: [
           {
-            type: 'select',
-            name: 'alignSelf',
+            type: 'style-select',
+            name: 'align-self',
             label: 'align Y',
             changeProp: true,
             default: 'initial',
@@ -38,12 +38,11 @@ const gridItemComponent = (editor: Editor) => {
             ],
           },
           {
-            type: 'select',
-            name: 'justifySelf',
+            type: 'style-select',
+            name: 'justify-self',
             label: 'align X',
             changeProp: true,
             default: 'stretch',
-            // category: categoryMobile,
             options: [
               { value: 'stretch', name: 'stretch' },
               { value: 'start', name: 'start' },
@@ -52,91 +51,31 @@ const gridItemComponent = (editor: Editor) => {
             ],
           },
           {
-            type: 'select',
-            name: 'columnSize',
+            type: 'style-select',
+            name: 'grid-column',
             label: 'column size',
             changeProp: true,
             default: 1,
             // category: categoryMobile,
             options: [
-              { value: 1, name: 'col 1' },
-              { value: 2, name: 'col 2' },
-              { value: 3, name: 'col 3' },
-              { value: 4, name: 'col 4' },
-              { value: 5, name: 'col 5' },
-              { value: 6, name: 'col 6' },
-              { value: 7, name: 'col 7' },
-              { value: 8, name: 'col 8' },
-              { value: 9, name: 'col 9' },
-              { value: 10, name: 'col 10' },
-              { value: 11, name: 'col 11' },
-              { value: 12, name: 'col 12' },
+              { value: 'span 1', name: 'col 1' },
+              { value: 'span 2', name: 'col 2' },
+              { value: 'span 3', name: 'col 3' },
+              { value: 'span 4', name: 'col 4' },
+              { value: 'span 5', name: 'col 5' },
+              { value: 'span 6', name: 'col 6' },
+              { value: 'span 7', name: 'col 7' },
+              { value: 'span 8', name: 'col 8' },
+              { value: 'span 9', name: 'col 9' },
+              { value: 'span 10', name: 'col 10' },
+              { value: 'span 11', name: 'col 11' },
+              { value: 'span 12', name: 'col 12' },
             ],
           },
         ],
       },
-      init() {
-        // Also the listener changes from `change:attributes:*` to `change:*`
-        // @ts-ignore
-        this.on('change:alignSelf', this.handlerChangeAlignSelf);
-        // @ts-ignore
-        this.on('change:justifySelf', this.handlerChangeJustifySelf);
-        // @ts-ignore
-        this.on('change:columnSize', this.handlerChangeGridColumn);
-      },
-      changeStyle(styleObj: { [name: string]: string }) {
-        // @ts-ignore
-        editor.StyleManager.addStyleTargets(styleObj);
-      },
-      handlerChangeAlignSelf(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'align-self': value,
-        });
-      },
-      handlerChangeJustifySelf(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'justify-self': value,
-        });
-      },
-      handlerChangeGridColumn(component: ComponentProperties, value: string) {
-        this.changeStyle({
-          'grid-column': `span ${value}`,
-        });
-      },
     },
   });
-
-  const getStyle = (style: string) => editor.StyleManager.getSelected()?.attributes?.style?.[style];
-  // @ts-ignore
-  const getTraitElement = (name: string) => editor.getSelected().get('traits').where({ name })[0];
-  const getNumberFromString = (str: string): number => +(str?.match(/[0-9]/g)?.join('') || 0);
-
-  const setProps = () => {
-    if (editor.getSelected()?.getName()?.toLowerCase() === containerComponentType) {
-      setTimeout(() => {
-        if (getStyle('align-self')) {
-          getTraitElement('alignSelf').setValue(getStyle('align-self'));
-        } else {
-          getTraitElement('alignSelf').setValue('initial');
-        }
-        if (getStyle('justify-self')) {
-          // console.log(getStyle('justify-self'));
-          getTraitElement('justifySelf').setValue(getStyle('justify-self'));
-        } else {
-          getTraitElement('justifySelf').setValue('stretch');
-        }
-
-        if (getStyle('grid-column')) {
-          getTraitElement('columnSize').setValue(`${getNumberFromString(getStyle('grid-column'))}`);
-        } else {
-          getTraitElement('columnSize').setValue(1);
-        }
-      }, 4);
-    }
-  };
-
-  editor.on('change:device', setProps);
-  editor.on('component:selected', setProps);
 };
 
 export default gridItemComponent;
