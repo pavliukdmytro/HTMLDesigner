@@ -13,6 +13,7 @@ import commands from '@/grapes/commands';
 
 import components from '@/grapes/components/index';
 import traits from '@/grapes/traits/index';
+import styleManager from '@/grapes/styleManager';
 
 const editorConfig: EditorConfig = {
   canvas: {
@@ -55,6 +56,7 @@ const editorConfig: EditorConfig = {
       {
         name: 'Desktop',
         width: '', // default size
+        // active: true,
       },
       {
         name: 'Tablet',
@@ -272,54 +274,7 @@ const editorConfig: EditorConfig = {
     appendTo: '.styles-container',
     componentFirst: true,
   },
-  styleManager: {
-    appendTo: '.styles-container',
-    sectors: [
-      {
-        name: 'Dimension',
-        open: false,
-        // Use built-in properties
-        buildProps: ['width', 'min-height', 'padding'],
-        // Use `properties` to define/override single property
-        properties: [
-          {
-            // Type of the input,
-            // options: integer | radio | select | color | slider | file | composite | stack
-            type: 'integer',
-            name: 'The width', // Label for the property
-            property: 'width', // CSS property (if buildProps contains it will be extended)
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            units: ['px', '%'], // Units, available only for 'integer' types
-            defaults: 'auto', // Default value
-            min: 0, // Min value, available only for 'integer' types
-          },
-        ],
-      },
-      {
-        name: 'Extra',
-        open: false,
-        buildProps: ['background-color', 'box-shadow', 'custom-prop', 'color'],
-        properties: [
-          {
-            id: 'custom-prop',
-            name: 'Custom Label',
-            property: 'font-size',
-            type: 'select',
-            defaults: '32px',
-            // List of options, available only for 'select' and 'radio'  types
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            options: [
-              { value: '12px', name: 'Tiny' },
-              { value: '18px', name: 'Medium' },
-              { value: '32px', name: 'Big' },
-            ],
-          },
-        ],
-      },
-    ],
-  },
+  styleManager,
   commands: {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -338,7 +293,6 @@ const editorConfig: EditorConfig = {
     ],
   },
   traitManager: {
-    // appendTo: '.styles-container',
     appendTo: '.traits-container',
   },
   plugins: [linkBlockComponentType, ...components],
@@ -349,5 +303,8 @@ const editor: Editor = grapesjs.init(editorConfig);
 commands(editor);
 
 traits(editor);
+
+// console.log(editor.StyleManager.getBuiltIn('display'));
+// console.log(editor.StyleManager.getBuiltInAll());
 
 export default editor;
