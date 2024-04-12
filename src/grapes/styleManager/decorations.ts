@@ -1,41 +1,15 @@
 export default {
   name: 'Decorations',
   open: false,
-  buildProps: [
-    'background-color',
-    // 'container-background-color',
-    'background-url',
-    'background-repeat',
-    'background-size',
-    'border-radius',
-    'border',
-  ],
+  buildProps: ['background', 'border', 'border-radius', 'transform'],
+
   properties: [
-    // {
-    //   name: 'Background color',
-    //   property: 'container-background-color',
-    //   type: 'color',
-    // },
     {
-      property: 'background-url',
-      type: 'file',
-    },
-    {
-      property: 'border-radius',
+      type: 'stack',
+      property: 'border',
+      label: 'border',
       properties: [
-        { name: 'Top', property: 'border-top-left-radius' },
-        { name: 'Right', property: 'border-top-right-radius' },
-        { name: 'Bottom', property: 'border-bottom-left-radius' },
-        { name: 'Left', property: 'border-bottom-right-radius' },
-      ],
-    },
-    {
-      property: 'border-detached',
-      name: 'Border detached',
-      type: 'composite',
-      detached: true,
-      properties: [
-        { name: 'Width', property: 'border-width', type: 'integer', units: ['px', '%'] },
+        { name: 'Width', type: 'number', units: ['px'], default: '0', property: 'border-width' },
         {
           name: 'Style',
           property: 'border-style',
@@ -55,5 +29,46 @@ export default {
         { name: 'Color', property: 'border-color', type: 'color' },
       ],
     },
+    {
+      type: 'stack',
+      property: 'border-radius',
+      label: 'border radius',
+      properties: [
+        {
+          name: 'Top',
+          type: 'number',
+          units: ['px'],
+          default: '0',
+          property: 'border-top-left-radius',
+        },
+        {
+          name: 'Right',
+          property: 'border-top-right-radius',
+          type: 'number',
+          units: ['px'],
+          default: '0',
+        },
+        {
+          name: 'Bottom',
+          property: 'border-bottom-left-radius',
+          type: 'number',
+          units: ['px'],
+          default: '0',
+        },
+        {
+          name: 'Left',
+          property: 'border-bottom-right-radius',
+          type: 'number',
+          units: ['px'],
+          default: '0',
+        },
+      ],
+    },
+    // {
+    //   type: 'stack',
+    //   property: 'transform',
+    //   label: 'transform',
+    //   properties:
+    // },
   ],
 };
