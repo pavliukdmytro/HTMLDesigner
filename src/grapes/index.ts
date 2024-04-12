@@ -272,8 +272,9 @@ const editorConfig: EditorConfig = {
     ],
   },
   selectorManager: {
-    appendTo: '.styles-container',
-    componentFirst: true,
+    appendTo: '.selector-manager',
+    // componentFirst: true,
+    componentFirst: false,
   },
   styleManager,
   commands: {

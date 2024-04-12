@@ -16,6 +16,8 @@ const gridContainerComponent = (editor: Editor) => {
         attributes: { class: 'grid-container' },
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
+        // stylable: ['width', 'height'],
+        // unstylable: ['color']
         styles,
         traits() {
           return [

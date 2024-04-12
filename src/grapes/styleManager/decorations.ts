@@ -1,7 +1,7 @@
 export default {
   name: 'Decorations',
   open: false,
-  buildProps: ['background', 'border', 'border-radius', 'transform'],
+  buildProps: ['background', 'border', 'border-radius', 'box-shadow'],
 
   properties: [
     {
