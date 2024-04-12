@@ -1,6 +1,6 @@
 import 'grapesjs/dist/css/grapes.min.css';
 import './grapes.scss';
-import plugin from 'grapesjs-style-bg';
+import pluginStyleBg from 'grapesjs-style-bg';
 
 import grapesjs, { EditorConfig } from 'grapesjs';
 import blockManager from '@/grapes/blocks/blockManager';
@@ -296,16 +296,18 @@ const editorConfig: EditorConfig = {
   traitManager: {
     appendTo: '.traits-container',
   },
-  plugins: [
-    (editor) =>
-      plugin(editor, {
-        /* options */
-      }),
-    linkBlockComponentType,
-    ...components,
-  ],
+  plugins: [pluginStyleBg, linkBlockComponentType, ...components],
   pluginsOpts: {
-    'grapesjs-style-bg': {},
+    'grapesjs-style-bg': {
+      styleGradientOpts: {
+        // styleType: 'color',
+        colorPicker: 'default',
+        grapickOpts: {
+          min: 1,
+          max: 99,
+        },
+      },
+    },
   },
 };
 

@@ -48,6 +48,7 @@
     "grapesjs": "^0.21.1",
     "grapesjs-style-bg": "^2.0.2",
     "grapesjs-typed": "^2.0.1",
+    "grapick": "^0.1.13",
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.3",
     "html-webpack-plugin": "^5.5.0",
