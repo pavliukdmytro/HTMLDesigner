@@ -11,7 +11,10 @@ const gridItemComponent = (editor: Editor) => {
       // Default properties
       defaults: {
         tagName: 'div',
-        attributes: { class: 'grid-item' },
+        // attributes: { class: 'grid-item' },
+        stylable: [''],
+        draggable: 'grid-container',
+        // stylable:
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
         // styles: `.grid-container {display: grid;}`,

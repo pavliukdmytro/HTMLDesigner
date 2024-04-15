@@ -4,6 +4,8 @@ import styles from './grid-container.m.scss';
 
 const containerComponentType = 'grid-container';
 
+console.log(styles);
+
 const gridContainerComponent = (editor: Editor) => {
   editor.DomComponents.addType(containerComponentType, {
     // Make the editor understand when to bind `my-input-type`
@@ -14,10 +16,15 @@ const gridContainerComponent = (editor: Editor) => {
       defaults: {
         tagName: 'div',
         attributes: { class: 'grid-container' },
+        // style: {},
+        // style: {
+        //   display: 'grid',
+        // },
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
         // stylable: ['width', 'height'],
         // unstylable: ['color']
+        stylable: [''],
         styles,
         traits() {
           return [

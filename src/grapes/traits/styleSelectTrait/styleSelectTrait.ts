@@ -28,11 +28,15 @@ export default (editor: Editor) => {
     onEvent({ event, trait }) {
       // @ts-ignore
       const value = event?.target?.value;
-      // @ts-ignore
-      editor.StyleManager.addStyleTargets({
+      editor.getSelected()?.addStyle({
         // @ts-ignore
         [trait.get('name')]: value,
       });
+      // @ts-ignore
+      // editor.StyleManager.addStyleTargets({
+      //   // @ts-ignore
+      //   [trait.get('name')]: value,
+      // });
       // console.log('set');
       trait.setValue(value);
     },

@@ -13,6 +13,15 @@
     width: auto;
     height: auto;
     min-height: auto;
+    &__media{
+        //.fa{
+            font-size: 24px;
+        //}
+        svg{
+            width: 34px;
+            height: 34px;
+        }
+    }
 }
 
 .panel__top {
@@ -66,6 +75,13 @@
 
 .gjs-dashed *[data-gjs-highlightable]{
     @include blockStyle;
+}
+
+.gjs-block-label{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 //.gjs-dashed{

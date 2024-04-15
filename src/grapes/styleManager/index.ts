@@ -115,7 +115,17 @@ export default {
     {
       name: 'Position & Transform',
       open: false,
-      buildProps: ['position', 'top', 'right', 'bottom', 'left', 'transform', 'overflow'],
+      buildProps: [
+        'position',
+        'top',
+        'right',
+        'bottom',
+        'left',
+        'transform',
+        'transition',
+        'opacity',
+        'overflow',
+      ],
       properties: [
         {
           id: 'position',
@@ -132,12 +142,12 @@ export default {
             { value: 'sticky', name: 'sticky' },
           ],
           // @ts-ignore
-          onChange: (data) => {
-            console.log(data?.clear);
-            // { property, from, to }
-            // console.log(`Changed property`, property.getName(), { from, to });
-            // console.log(this);
-          },
+          // onChange: (data) => {
+          // console.log(data?.clear);
+          // { property, from, to }
+          // console.log(`Changed property`, property.getName(), { from, to });
+          // console.log(this);
+          // },
         },
         {
           id: 'top',
