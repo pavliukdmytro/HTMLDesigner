@@ -1,4 +1,5 @@
 import 'grapesjs/dist/css/grapes.min.css';
+import 'grapick/dist/grapick.min.css';
 import './grapes.scss';
 import pluginStyleBg from 'grapesjs-style-bg';
 
