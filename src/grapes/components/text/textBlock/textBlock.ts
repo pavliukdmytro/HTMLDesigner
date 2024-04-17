@@ -11,7 +11,7 @@ const textBlockComponent = (editor: Editor) => {
       // Default properties
       defaults: {
         tagName: 'p',
-        attributes: { class: 'text-block' },
+        attributes: { class: 'text-block', 'data-gjs-type': 'text-block' },
         editable: true,
         styles,
         content: '',

@@ -12,7 +12,7 @@ const containerComponent = (editor: Editor) => {
       // Default properties
       defaults: {
         tagName: 'div',
-        attributes: { class: 'container' },
+        attributes: { class: 'container', 'data-gjs-type': containerComponentType },
         styles,
       },
     },

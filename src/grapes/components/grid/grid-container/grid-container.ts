@@ -15,17 +15,20 @@ const gridContainerComponent = (editor: Editor) => {
       // Default properties
       defaults: {
         tagName: 'div',
-        attributes: { class: 'grid-container' },
+        attributes: {
+          'data-gjs-type': containerComponentType,
+        },
+        // attributes: { class: 'grid-container' },
         // style: {},
-        // style: {
-        //   display: 'grid',
-        // },
+        style: {
+          display: 'grid',
+        },
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
         // stylable: ['width', 'height'],
         // unstylable: ['color']
         stylable: [''],
-        styles,
+        // styles,
         traits() {
           return [
             {
@@ -33,7 +36,7 @@ const gridContainerComponent = (editor: Editor) => {
               name: 'grid-template-columns',
               label: 'column',
               changeProp: true,
-              default: 'repeat(1, minmax(0, 1fr))',
+              // default: 'repeat(1, minmax(0, 1fr))',
               options: [
                 { value: 'repeat(1, minmax(0, 1fr))', name: 'col 1' },
                 { value: 'repeat(2, minmax(0, 1fr))', name: 'col 2' },

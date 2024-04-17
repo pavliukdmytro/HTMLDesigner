@@ -13,7 +13,11 @@ const gridItemComponent = (editor: Editor) => {
         tagName: 'div',
         // attributes: { class: 'grid-item' },
         stylable: [''],
-        draggable: 'grid-container',
+        attributes: {
+          'data-gjs-type': containerComponentType,
+        },
+        draggable: 'grid-container, grid-container *',
+        // droppable: true,
         // stylable:
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside

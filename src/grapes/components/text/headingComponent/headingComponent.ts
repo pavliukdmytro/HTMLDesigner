@@ -10,7 +10,7 @@ const headingComponent = (editor: Editor) => {
       // Default properties
       defaults: {
         tagName: 'h1',
-        attributes: { class: 'g-title' },
+        attributes: { class: 'g-title', 'data-gjs-type': 'heading' },
         editable: true,
         // styles,
         content: '',
