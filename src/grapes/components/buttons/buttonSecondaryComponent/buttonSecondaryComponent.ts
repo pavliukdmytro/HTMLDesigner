@@ -1,8 +1,10 @@
 import type { Editor } from 'grapesjs';
-import styles from './textBlock.m.scss';
+import styles from './buttonSecondaryComponent.m.scss';
 
-const textBlockComponent = (editor: Editor) => {
-  editor.DomComponents.addType('text-block', {
+console.log(styles);
+
+const buttonSecondaryComponent = (editor: Editor) => {
+  editor.DomComponents.addType('button-secondary', {
     // Make the editor understand when to bind `my-input-type`
     // isComponent: (el) => el.tagName === 'INPUT',
     // Model definition
@@ -10,8 +12,8 @@ const textBlockComponent = (editor: Editor) => {
     model: {
       // Default properties
       defaults: {
-        tagName: 'p',
-        attributes: { class: 'text-block', 'data-gjs-type': 'text-block' },
+        tagName: 'button',
+        attributes: { class: 'g-button-secondary', 'data-gjs-type': 'button-secondary' },
         editable: true,
         styles,
         content: '',
@@ -20,4 +22,4 @@ const textBlockComponent = (editor: Editor) => {
   });
 };
 
-export default textBlockComponent;
+export default buttonSecondaryComponent;

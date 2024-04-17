@@ -1,0 +1,16 @@
+.g-button-primary{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--button-primary-color);
+  background-color: var(--button-primary-background-color);
+  padding: 0 30px;
+  height: var(--button-height);
+  cursor: pointer;
+  transition-duration: var(--button-transition-time);
+  transition-timing-function: linear;
+  transition-property: background-color;
+  &:hover {
+    background-color: var(--button-primary-background-color-hover);
+  }
+}

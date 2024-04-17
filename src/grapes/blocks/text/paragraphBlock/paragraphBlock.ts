@@ -11,7 +11,7 @@ const paragraphBlock: BlockProperties = {
     `,
   select: true,
   content: {
-    type: 'text-block',
+    type: 'paragraph',
     draggable: true,
     editable: true,
   },

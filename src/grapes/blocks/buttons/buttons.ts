@@ -1,27 +1,7 @@
-import './buttons.scss';
 import type { BlockProperties } from 'grapesjs';
+import buttonPrimaryBlock from '@/grapes/blocks/buttons/buttonPrimaryBlock/buttonPrimaryBlock';
+import buttonSecondaryBlock from '@/grapes/blocks/buttons/buttonSecondaryBlock/buttonSecondaryBlock';
 
-const category = 'Buttons';
-
-const buttonsArray: Array<BlockProperties> = [
-  {
-    id: 'button-primary', // id is mandatory
-    category,
-    label: `<div>Button primary</div>`,
-    // type: 'link',
-    content: `
-        <a class="g-button-primary" data-gjs-type="link" data-gjs-droppable="true" href="">Button primary</a>
-    `,
-  },
-  {
-    id: 'button-secondary', // id is mandatory
-    category,
-    label: `<div>Button secondary</div>`,
-    // type: 'link',
-    content: `
-        <a class="g-button-secondary" data-gjs-type="link" data-gjs-droppable="true" href="">Button secondary</a>
-    `,
-  },
-];
+const buttonsArray: Array<BlockProperties> = [buttonPrimaryBlock, buttonSecondaryBlock];
 
 export default buttonsArray;

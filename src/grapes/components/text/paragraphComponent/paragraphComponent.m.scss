@@ -1,0 +1,6 @@
+.paragraph{
+  min-height: 10px;
+  &:not(:last-child){
+    margin-bottom: 16px;
+  }
+}

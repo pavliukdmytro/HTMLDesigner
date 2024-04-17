@@ -1,10 +1,10 @@
 import type { Editor } from 'grapesjs';
 
-import styles from './grid-container.m.scss';
+// import styles from './grid-container.m.scss';
 
 const containerComponentType = 'grid-container';
 
-console.log(styles);
+// console.log(styles);
 
 const gridContainerComponent = (editor: Editor) => {
   editor.DomComponents.addType(containerComponentType, {
