@@ -3,7 +3,11 @@ import type { BlockProperties } from 'grapesjs';
 
 const span: BlockProperties = {
   id: 'span', // id is mandatory
-  category: 'text',
+  category: {
+    id: 'text',
+    label: 'text',
+    open: false,
+  },
   label: `
       <div class="gjs-block-label">span</div>
     `,

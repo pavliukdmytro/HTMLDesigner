@@ -2,7 +2,11 @@ import type { BlockProperties } from 'grapesjs';
 
 const headingBlock: BlockProperties = {
   id: 'headingBlock', // id is mandatory
-  category: 'text',
+  category: {
+    id: 'text',
+    label: 'text',
+    open: false,
+  },
   label: `
       <h2 class="gjs-block__media">
         H
