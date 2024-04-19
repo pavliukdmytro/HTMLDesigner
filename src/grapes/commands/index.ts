@@ -5,12 +5,15 @@ export default (editor: Editor) => {
   // Commands
   Commands.add('set-device-desktop', {
     run: (editor2: Editor) => editor2.setDevice('Desktop'),
+    stop: () => undefined,
   });
   Commands.add('set-device-tablet', {
     run: (editor2: Editor) => editor2.setDevice('Tablet'),
+    stop: () => undefined,
   });
   Commands.add('set-device-mobile', {
     run: (editor2: Editor) => editor2.setDevice('Mobile'),
+    stop: () => undefined,
   });
 
   Commands.add('show-layers', {
@@ -60,7 +63,7 @@ export default (editor: Editor) => {
       return editor2?.getContainer()?.closest('.editor-row');
     },
     getStyleEl(row: HTMLDivElement) {
-      return row.querySelector('#blocks');
+      return row.querySelector('.blocks-container');
     },
 
     run(editor2: Editor) {
@@ -90,6 +93,30 @@ export default (editor: Editor) => {
     stop(editor2: Editor) {
       // @ts-ignore
       this.getTraitsEl(editor2).style.display = 'none';
+    },
+  });
+
+  Commands.add('switch-panel-left', {
+    getLeftPanel(editor2: Editor): HTMLDivElement | null | undefined {
+      return editor2?.getContainer()?.closest('.editor-row')?.querySelector('.panel-left');
+    },
+    // getStyleEl(row: HTMLDivElement | null) {
+    //   return row?.querySelector('.panel-left');
+    // },
+
+    run(editor2: Editor) {
+      const panelLeft = this.getLeftPanel(editor2);
+      if (panelLeft) {
+        panelLeft.style.display = 'block';
+      }
+      // console.log();
+    },
+    // @ts-ignore
+    stop(editor2: Editor) {
+      const panelLeft = this.getLeftPanel(editor2);
+      if (panelLeft) {
+        panelLeft.style.display = 'none';
+      }
     },
   });
 };

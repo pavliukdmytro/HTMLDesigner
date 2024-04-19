@@ -5,7 +5,7 @@ import text from '@/grapes/blocks/text/text';
 import type { BlockManagerConfig } from 'grapesjs';
 
 const blockManager: BlockManagerConfig = {
-  appendTo: '#blocks',
+  appendTo: '.blocks-container',
   blocks: [
     ...basic,
     ...text,

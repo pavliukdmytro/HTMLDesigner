@@ -12,22 +12,26 @@
     <script src="./app.js" defer></script>
 </head>
 <body>
-<div class="panel__top">
-    <div class="panel__devices"></div>
+<div class="panel-top">
+    <div class="panel-top__left">
+      <div class="panel-left-controls"></div>
+      <div class="panel__devices"></div>
+    </div>
     <div class="panel__basic-actions"></div>
     <div class="panel__switcher"></div>
 </div>
 <div class="editor-row">
+  <div class="panel-left"></div>
     <div class="editor-canvas">
         <div id="gjs"></div>
     </div>
-    <div class="panel__right">
+    <div class="panel-right" style="left: unset">
         <div class="layers-container"></div>
         <div class="styles-container">
           <div class="selector-manager"></div>
           <div class="styles-manager"></div>
         </div>
-        <div id="blocks"></div>
+        <div class="blocks-container"></div>
         <div class="traits-container"></div>
     </div>
 </div>

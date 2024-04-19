@@ -58,6 +58,7 @@ const editorConfig: EditorConfig = {
       {
         name: 'Desktop',
         width: '', // default size
+        // @ts-ignore
         // active: true,
       },
       {
@@ -76,14 +77,49 @@ const editorConfig: EditorConfig = {
   panels: {
     defaults: [
       {
-        id: 'layers',
+        id: 'panel-left-controls',
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        el: '.panel__right',
+        el: '.panel-left-controls',
+        buttons: [
+          {
+            id: 'panel-left',
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            label: '<i class="fa fa-columns" aria-hidden="true"></i>',
+            command: 'switch-panel-left',
+            active: false,
+            // togglable: false,
+          },
+        ],
+      },
+      {
+        id: 'pages',
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        el: '.panel-left',
         // Make the panel resizable
         resizable: {
           maxDim: 350,
-          minDim: 200,
+          minDim: 250,
+          tc: 0, // Top handler
+          cl: 0, // Left handler
+          cr: 1, // Right handler
+          bc: 0, // Bottom handler
+          // Being a flex child we need to change `flex-basis` property
+          // instead of the `width` (default)
+          keyWidth: 'flex-basis',
+        },
+      },
+      {
+        id: 'layers',
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        el: '.panel-right',
+        // Make the panel resizable
+        resizable: {
+          maxDim: 350,
+          minDim: 250,
           tc: 0, // Top handler
           cl: 1, // Left handler
           cr: 0, // Right handler
@@ -107,7 +143,7 @@ const editorConfig: EditorConfig = {
               '        </svg>',
             command: 'set-device-desktop',
             active: true,
-            // togglable: false,
+            togglable: true,
           },
           {
             id: 'device-tablet',
@@ -118,8 +154,8 @@ const editorConfig: EditorConfig = {
               '            <path fill="currentColor" d="M19,18H5V6H19M21,4H3C1.89,4 1,4.89 1,6V18A2,2 0 0,0 3,20H21A2,2 0 0,0 23,18V6C23,4.89 22.1,4 21,4Z"></path>\n' +
               '        </svg>',
             command: 'set-device-tablet',
-            active: true,
-            // togglable: false,
+            // active: false,
+            togglable: true,
           },
           {
             id: 'device-mobile',
@@ -130,7 +166,8 @@ const editorConfig: EditorConfig = {
               '            <path fill="currentColor" d="M17,19H7V5H17M17,1H7C5.89,1 5,1.89 5,3V21A2,2 0 0,0 7,23H17A2,2 0 0,0 19,21V3C19,1.89 18.1,1 17,1Z"></path>\n' +
               '        </svg>',
             command: 'set-device-mobile',
-            // togglable: false,
+            // active: false,
+            togglable: true,
           },
         ],
       },
@@ -274,8 +311,8 @@ const editorConfig: EditorConfig = {
   },
   selectorManager: {
     appendTo: '.selector-manager',
-    // componentFirst: true,
-    componentFirst: false,
+    componentFirst: true,
+    // componentFirst: false,
   },
   styleManager,
   commands: {
