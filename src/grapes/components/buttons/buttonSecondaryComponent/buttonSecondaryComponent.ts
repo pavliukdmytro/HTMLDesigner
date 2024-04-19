@@ -1,8 +1,6 @@
 import type { Editor } from 'grapesjs';
 import styles from './buttonSecondaryComponent.m.scss';
 
-console.log(styles);
-
 const buttonSecondaryComponent = (editor: Editor) => {
   editor.DomComponents.addType('button-secondary', {
     // Make the editor understand when to bind `my-input-type`

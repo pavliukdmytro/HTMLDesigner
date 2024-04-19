@@ -1,5 +1,7 @@
 import type { Editor } from 'grapesjs';
 
+// console.log(Editor);
+// import type { Component } from 'grapesjs/dist/index.d.ts';
 // import styles from './grid-container.m.scss';
 
 const containerComponentType = 'grid-container';
@@ -23,11 +25,18 @@ const gridContainerComponent = (editor: Editor) => {
         style: {
           display: 'grid',
         },
+        // @ts-ignore
+        droppable: (dropped) =>
+          // console.log(dropped);
+          dropped?.getName() === 'Grid-item',
+        // components: {},
         // draggable: 'form, form *', // Can be dropped only inside `form` elements
         // droppable: false, // Can't drop other elements inside
         // stylable: ['width', 'height'],
         // unstylable: ['color']
         stylable: [''],
+        components: [{ type: 'grid-item' }],
+        // droppable: ['grid-item, grid-item *'],
         // styles,
         traits() {
           return [

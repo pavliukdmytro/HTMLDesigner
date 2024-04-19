@@ -7,10 +7,8 @@ const headingBlock: BlockProperties = {
     label: 'text',
     open: false,
   },
+  media: 'H',
   label: `
-      <h2 class="gjs-block__media">
-        H
-      </h2>
       <div class="gjs-block-label">Heading</div>
     `,
   select: true,

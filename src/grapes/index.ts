@@ -5,7 +5,7 @@ import pluginStyleBg from 'grapesjs-style-bg';
 
 import grapesjs, { EditorConfig } from 'grapesjs';
 import blockManager from '@/grapes/blocks/blockManager';
-import type { Editor } from 'grapesjs/dist/index';
+import type { Editor } from 'grapesjs';
 
 import { undoButton, undoCommands } from '@/grapes/panels/undo';
 import { redoButton, redoCommands } from '@/grapes/panels/redo';
@@ -321,5 +321,7 @@ traits(editor);
 
 // console.log(editor.StyleManager.getBuiltIn('display'));
 // console.log(editor.StyleManager.getBuiltInAll());
+// @ts-ignore
+// window.editor = editor;
 
 export default editor;

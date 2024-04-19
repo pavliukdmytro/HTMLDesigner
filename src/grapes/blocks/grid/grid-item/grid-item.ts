@@ -15,7 +15,7 @@ const gridItemBlock: BlockProperties = {
   select: true,
   content: {
     type: 'grid-item',
-    draggable: true,
+    // draggable: true,
     editable: true,
   },
 };
